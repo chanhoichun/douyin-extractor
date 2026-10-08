@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>抖音视频提取工具 - 无水印下载</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>" />
+</head>
+<body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="logo">🎵</div>
+      <h1>抖音视频提取工具</h1>
+      <p class="subtitle">粘贴分享链接，一键解析 · 无水印下载</p>
+    </header>
+
+    <div id="offlineBanner" class="status error hidden">
+      ⚠️ 未检测到本地提取服务。请双击项目文件夹里的 <b>启动网站.bat</b>（会自动打开本页），
+      或先运行 <b>node server.js</b>，然后刷新本页即可使用。
+    </div>
+
+    <section class="card input-card">
+      <textarea
+        id="input"
+        rows="3"
+        placeholder="粘贴抖音分享链接或整段分享文案，例如：&#10;8.88 复制打开抖音，看看… https://v.douyin.com/xxxxxx/"
+        spellcheck="false"
+      ></textarea>
+      <div class="row">
+        <button id="extractBtn" class="btn btn-primary">
+          <span class="btn-icon">⚡</span><span class="btn-text">提取视频</span>
+        </button>
+        <button id="clearBtn" class="btn btn-ghost" title="清空">清空</button>
+      </div>
+    </section>
+
+    <section id="status" class="status hidden"></section>
+
+    <section id="result" class="card result-card hidden">
+      <div class="result-media">
+        <video id="player" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="result-info">
+        <div class="author-row">
+          <img id="avatar" class="avatar" alt="头像" />
+          <div class="author-meta">
+            <div class="author-name" id="authorName">—</div>
+            <div class="author-id" id="authorId"></div>
+          </div>
+        </div>
+        <h2 class="video-title" id="videoTitle">—</h2>
+        <div class="stats" id="stats"></div>
+        <div class="actions">
+          <a id="downloadBtn" class="btn btn-primary" download>
+            <span class="btn-icon">⬇️</span><span class="btn-text">下载无水印视频</span>
+          </a>
+          <a id="openBtn" class="btn btn-ghost" target="_blank" rel="noopener">
+            <span class="btn-icon">↗️</span><span class="btn-text">新窗口打开</span>
+          </a>
+          <button id="copyBtn" class="btn btn-ghost">
+            <span class="btn-icon">📋</span><span class="btn-text">复制视频地址</span>
+          </button>
+        </div>
+        <p class="hint">提示：视频地址有时效性，提取后请尽快下载。</p>
+      </div>
+    </section>
+
+    <section class="steps card">
+      <h3>使用步骤</h3>
+      <ol>
+        <li>双击项目文件夹里的 <b>启动网站.bat</b>，浏览器会自动打开本页面；</li>
+        <li>打开抖音 App，点视频右侧 <b>分享</b> → <b>复制链接</b>；</li>
+        <li>回到本页，把链接（或整段分享文案）粘贴到输入框，点击 <b>提取视频</b>；</li>
+        <li>稍等片刻即可在线预览并下载无水印视频。</li>
+      </ol>
+      <p class="hint">提示：直接双击 index.html 打开本页也可以使用（需先启动过本地服务）。</p>
+    </section>
+
+    <footer class="footer">
+      仅供个人学习交流使用，请尊重原创作者版权，勿用于商业用途。
+    </footer>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>

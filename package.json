@@ -1,0 +1,1 @@
+{"name":"douyin-extractor","version":"1.0.0","private":true,"description":"抖音视频提取工具","dependencies":{"playwright-core":"^1.63.0"}}
