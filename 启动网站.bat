@@ -16,6 +16,17 @@ rem 检测服务是否已在运行（占用 3000 端口）
 powershell -NoProfile -Command "if (Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }" >nul 2>nul
 if not errorlevel 1 goto open
 
+rem 首次启动时自动安装依赖
+if not exist "%~dp0node_modules" (
+  echo 首次启动，正在安装依赖，请稍候...
+  call npm install
+  if errorlevel 1 (
+    echo 依赖安装失败，请检查网络后重试。
+    pause
+    exit /b 1
+  )
+)
+
 rem 启动服务（最小化窗口）
 start "抖音视频提取工具 - 本地服务" /min "%NODE%" "%~dp0server.js"
 timeout /t 2 /nobreak >nul
